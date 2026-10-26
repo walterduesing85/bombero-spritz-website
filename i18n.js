@@ -70,7 +70,7 @@
         'parken?': 'park?',
         'Plane die mobile Bar mit Personal für dein Event. Teile uns die wichtigsten Eckdaten mit – den Rest besprechen wir persönlich.':
             'Plan the mobile bar with staff for your event. Share the key details with us – we will discuss the rest in person.',
-        'LIEBER DIREKT SPRECHEN?': 'PREFER TO TALK DIRECTLY?',
+        'LIEBER DIREKT SCHREIBEN?': 'PREFER TO WRITE DIRECTLY?',
         'Unverbindliche Anfrage': 'Non-binding enquiry',
         'Dein Event auf einen Blick.': 'Your event at a glance.',
         'Art des Events': 'Type of event',
