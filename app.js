@@ -314,7 +314,9 @@ ${fields.name.value}`;
   submit.disabled = true;
   I18N.say(status, 'sending');
 
-  try {
+  // The sheet entry is the primary record; the mail runs alongside and may finish later.
+  const sheet = sendToSheet();
+  const mail = (async () => {
     const response = await fetch('https://formsubmit.co/ajax/info@bomberospritz.de', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -333,8 +335,11 @@ ${fields.name.value}`;
     if (!response.ok || String(result.success) !== 'true') {
       throw new Error('send failed');
     }
+  })();
+  mail.catch(() => {});
 
-    sendToSheet();
+  try {
+    await Promise.any([sheet, mail]);
     I18N.say(status, 'sent');
     submit.hidden = true;
     document.querySelector('.back-row').hidden = true;
@@ -351,7 +356,7 @@ const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxUUkWkB3xjno23PG5cFw
 
 function sendToSheet() {
     if (!SHEET_URL) {
-        return;
+        return Promise.reject(new Error('sheet disabled'));
     }
 
     const qty = (box, name) => (chosen(box) ? count(name) : 0);
@@ -381,12 +386,12 @@ function sendToSheet() {
     };
 
     // text/plain avoids a CORS preflight; the response is not needed.
-    fetch(SHEET_URL, {
+    return fetch(SHEET_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(row),
-    }).catch(() => {});
+    });
 }
 
 let mailtoFallback = '';
