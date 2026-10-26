@@ -334,6 +334,7 @@ ${fields.name.value}`;
       throw new Error('send failed');
     }
 
+    sendToSheet();
     I18N.say(status, 'sent');
     submit.hidden = true;
     document.querySelector('.back-row').hidden = true;
@@ -344,6 +345,49 @@ ${fields.name.value}`;
     document.getElementById('mail-fallback').hidden = false;
   }
 });
+
+// URL of the Google Apps Script web app (see google-sheet/README.md). Empty = disabled.
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxUUkWkB3xjno23PG5cFwbAr2EoEVECd4LYxFBqVtF9zUyRVIEXDBsuC9IvHGXELgiI/exec';
+
+function sendToSheet() {
+    if (!SHEET_URL) {
+        return;
+    }
+
+    const qty = (box, name) => (chosen(box) ? count(name) : 0);
+    const chosen = (box) => fields[box].checked;
+    const row = {
+        sprache: I18N.lang,
+        eventtyp: fields.eventtyp.value,
+        gaeste: fields.gaeste.value,
+        stunden: fields.stunden.value,
+        datum: fields.datum.value,
+        adresse: fields.adresse.value.trim(),
+        karte: mapLink().trim(),
+        aperitivo: qty('aperitivo_an', 'aperitivo'),
+        wasser_still: qty('wasser_an', 'wasser_still'),
+        wasser_sprudel: qty('wasser_an', 'wasser_sprudel'),
+        wasser_liter: Math.round((qty('wasser_an', 'wasser_still') + qty('wasser_an', 'wasser_sprudel')) * 2) / 10,
+        bubbles_sorte: chosen('bubbles_an') ? fields.bubbles.value : '',
+        bubbles_glaeser: qty('bubbles_an', 'bubbles_qty'),
+        limonade: qty('limonade_an', 'limonade'),
+        bier_alkoholfrei: qty('bier_an', 'bier_alkoholfrei'),
+        bier_peroni: qty('bier_an', 'bier_peroni'),
+        tramezzini: qty('tramezzini_an', 'tramezzini'),
+        wunsch: fields.wunsch.value,
+        name: fields.name.value,
+        email: fields.email.value,
+        telefon: fields.telefon.value,
+    };
+
+    // text/plain avoids a CORS preflight; the response is not needed.
+    fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(row),
+    }).catch(() => {});
+}
 
 let mailtoFallback = '';
 document.getElementById('mail-fallback').addEventListener('click', () => {
