@@ -466,7 +466,6 @@ sync();
 const venue = {
     input: fields.adresse,
     list: document.getElementById('venue-suggestions'),
-    consent: document.getElementById('venue-consent'),
     mapBox: document.getElementById('venue-map'),
     map: null,
     marker: null,
@@ -481,14 +480,6 @@ function mapLink() {
     return venue.coords && venue.chosen === venue.input.value.trim() ?
         `\nhttps://www.openstreetmap.org/?mlat=${venue.coords[0]}&mlon=${venue.coords[1]}#map=17/${venue.coords[0]}/${venue.coords[1]}` :
         '';
-}
-
-function venueEnabled() {
-    return localStorage.getItem('mapConsent') === '1';
-}
-
-function venueState() {
-    venue.consent.hidden = venueEnabled();
 }
 
 function closeSuggestions() {
@@ -586,7 +577,7 @@ venue.input.addEventListener('input', () => {
     venue.mapBox.hidden = true;
     const query = venue.input.value.trim();
 
-    if (!venueEnabled() || query.length < 3) {
+    if (query.length < 3) {
         closeSuggestions();
         return;
     }
@@ -614,15 +605,3 @@ venue.input.addEventListener('keydown', (event) => {
 });
 
 venue.input.addEventListener('blur', closeSuggestions);
-
-document.getElementById('venue-allow').addEventListener('click', () => {
-    localStorage.setItem('mapConsent', '1');
-    venueState();
-    venue.input.focus();
-
-    if (venue.input.value.trim().length >= 3) {
-        lookup(venue.input.value.trim());
-    }
-});
-
-venueState();
