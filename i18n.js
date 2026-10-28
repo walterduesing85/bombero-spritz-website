@@ -13,6 +13,8 @@
         'gehören': 'belong',
         'ins Glas': 'in a glass',
         'gehören ins Glas': 'belong in a glass',
+        'Dein Event. Unser Einsatz.': 'Your Event. Our Call.',
+        'Wir löschen jeden Durst.': 'Thirst Extinguished.',
         'Ein roter Klassiker mit einer Bar voller Charakter.': 'A red classic with a bar full of character.',
         'Bombero Spritz bringt Atmosphäre auf dein Event.': 'Bombero Spritz brings atmosphere to your event.',
         'Dein Event planen': 'Plan your event',
