@@ -1772,28 +1772,6 @@ body>header .brand img {
   }
 }
 
-/* Call-to-action sits in the red banner below the hero photo */
-.cta-banner {
-  display: flex;
-  justify-content: flex-end;
-  padding: 16px 5%;
-  background: #d90000;
-  border-top: 1px solid #ffffff38;
-}
-
-.cta-banner .stage-cta {
-  position: static;
-}
-
-@media (max-width:800px) {
-  .cta-banner {
-    padding: 10px;
-  }
-  .stage-copy .intro {
-    bottom: 14px;
-  }
-}
-
 /* Very wide screens: red left half (logo, hero), white right half (story) at equal image height */
 @media (min-width:1500px) {
   :root {
@@ -1841,5 +1819,236 @@ body>header .brand img {
   }
   .top-split>.story h2 {
     font-size: clamp(30px, 2.4vw, 46px);
+  }
+}
+
+/* Larger intro at the bottom, pulsing text-only CTA on the very bottom of the hero photo */
+.stage-copy {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+}
+
+.stage-copy h1 {
+  position: absolute;
+  top: clamp(24px, 5vw, 56px);
+  left: clamp(20px, 4vw, 56px);
+  right: clamp(20px, 4vw, 56px);
+}
+
+.stage-copy .intro {
+  position: absolute;
+  left: clamp(20px, 4vw, 56px);
+  right: clamp(20px, 4vw, 56px);
+  bottom: 84px;
+  font-size: clamp(20px, 2.1vw, 30px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.stage-cta {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18px 20px;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 1px;
+  justify-content: center;
+  text-transform: uppercase;
+  animation: cta-pulse 2.4s ease-in-out infinite;
+}
+
+.stage-cta:hover {
+  background: #ff0000;
+  animation: none;
+}
+
+@keyframes cta-pulse {
+  0%, 100% { background-color: rgba(255,0,0,0); }
+  50% { background-color: rgba(255,0,0,1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-cta { animation: none; background: #ff0000; }
+}
+
+@media (max-width:800px) {
+  .stage-copy {
+    display: block;
+  }
+  .stage-copy h1 {
+    top: 20px;
+    left: 16px;
+    right: 16px;
+  }
+  .stage-copy .intro {
+    left: 16px;
+    right: 16px;
+    bottom: 64px;
+    font-size: 19px;
+  }
+  .stage-cta {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+
+/* Story photos: no frame, slow cross-fade slideshow */
+.story-photo {
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.story-photo.slideshow img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: slide-fade 16s infinite;
+}
+
+.story-photo.slideshow img:nth-child(2) {
+  animation-delay: -8s;
+}
+
+@keyframes slide-fade {
+  0%, 45% { opacity: 1; }
+  55%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-photo.slideshow img { animation: none; }
+  .story-photo.slideshow img:first-child { opacity: 1; }
+}
+
+/* CTA below the hero on white, text-only pulse from transparent to red */
+.stage {
+  padding-bottom: 0;
+}
+
+.cta-row {
+  background: #fff;
+  text-align: center;
+  padding: 18px 20px;
+}
+
+.cta-row .stage-cta {
+  position: static;
+  display: inline-block;
+  padding: 6px 14px;
+  background: none;
+  border: 0;
+  color: #ff0000;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  animation: cta-text-pulse 2.4s ease-in-out infinite;
+}
+
+.cta-row .stage-cta:hover {
+  background: none;
+  animation: none;
+}
+
+@keyframes cta-text-pulse {
+  0%, 100% { color: rgba(255,0,0,0); }
+  50% { color: rgba(255,0,0,1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-row .stage-cta { animation: none; }
+}
+
+/* Smaller, tighter intro text at the bottom of the hero */
+.stage-copy .intro {
+  bottom: 18px;
+  font-size: clamp(15px, 1.5vw, 21px);
+  line-height: 1.2;
+}
+
+@media (max-width:800px) {
+  .stage-copy .intro {
+    bottom: 14px;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+  .cta-row {
+    padding: 12px;
+  }
+  .cta-row .stage-cta {
+    font-size: 16px;
+  }
+}
+
+/* Very slow zoom-in on the hero photo */
+.stage-frame>img {
+  animation: hero-zoom 10s ease-out forwards;
+}
+
+@keyframes hero-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-frame>img { animation: none; }
+}
+
+/* Banner pulses from white to Bombero red, text stays white */
+.cta-row {
+  animation: banner-pulse 2.4s ease-in-out infinite;
+}
+
+.cta-row .stage-cta {
+  color: #fff;
+  animation: none;
+}
+
+@keyframes banner-pulse {
+  0%, 100% { background-color: #fff; }
+  50% { background-color: #ff0000; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-row { animation: none; background-color: #ff0000; }
+}
+
+/* Five gallery photos */
+.photo-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.photo-grid figure:last-child img {
+  object-position: 12% 50%;
+}
+
+@media (max-width:1000px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .photo-grid figure:last-child {
+    grid-column: 1 / -1;
+  }
+  .photo-grid figure:last-child img {
+    aspect-ratio: 4/3;
+    object-position: 50% 50%;
   }
 }
