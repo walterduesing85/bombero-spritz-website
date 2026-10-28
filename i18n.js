@@ -51,6 +51,8 @@
         'Gäste mit Tellern und Drinks vor dem roten Feuerwehrwagen mit Blumenstrauß auf der Theke': 'Guests with plates and drinks in front of the red fire engine, a bouquet of flowers on the counter',
         'Bunte Luftballons über dem roten Feuerwehrwagen, Gäste feiern im Vordergrund': 'Colourful balloons above the red fire engine, guests celebrating in the foreground',
         'Der rote Feuerwehrwagen mit ausgeklappter Theke am Straßenrand': 'The red fire engine with its counter unfolded at the roadside',
+        'Der rote Bombero-Wagen mit offener Tür und Theke im Abendlicht': 'The red Bombero truck with open door and counter in the evening light',
+        'Gäste feiern an langen Tischen unter bunten Luftballons vor dem Bombero': 'Guests celebrating at long tables under colourful balloons in front of the Bombero',
         '02 / Mitten in der Vorbereitung': '02 / In the middle of preparation',
         '03 / Ganz viel Spaß am Bombero': '03 / So much fun at the Bombero',
         '04 / Buch uns für deinen Geburtstag': '04 / Book us for your birthday',
