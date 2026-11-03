@@ -9,6 +9,7 @@
         'So geht’s': 'How it works',
         'Event anfragen': 'Request an event',
         'MOBILE BAR. BERLINER ORIGINAL.': 'MOBILE BAR. BERLIN ORIGINAL.',
+        'Die mobile Bar': 'The mobile bar',
         'Gute Geschichten': 'Great stories',
         'gehören': 'belong',
         'ins Glas': 'in a glass',

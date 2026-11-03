@@ -2104,3 +2104,62 @@ body>header .brand img {
   transform: translateY(-2px);
   box-shadow: 0 10px 24px rgba(204, 35, 102, .45);
 }
+
+/* "Die mobile Bar" drives out of the header and ducks under the language switch */
+header {
+  position: relative;
+  overflow: hidden;
+}
+
+nav {
+  position: relative;
+  z-index: 2;
+}
+
+.drive {
+  position: absolute;
+  z-index: 1;
+  left: calc(5% + 236px);
+  right: 0;
+  bottom: 10px;
+  pointer-events: none;
+}
+
+.drive span {
+  display: inline-block;
+  color: #fff;
+  font-family: 'Manrope', Arial, sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-size: clamp(22px, 2.6vw, 38px);
+  letter-spacing: -1.5px;
+  line-height: 1;
+  transform-origin: 0 100%;
+  animation: drive-out 9s infinite;
+}
+
+@keyframes drive-out {
+  0%   { opacity: 0; transform: translateX(-24px) skewX(0); animation-timing-function: ease-out; }
+  8%   { opacity: 1; transform: translateX(0) skewX(0); }
+  38%  { opacity: 1; transform: translateX(0) skewX(0); animation-timing-function: ease-in-out; }
+  44%  { opacity: 1; transform: translateX(-14px) skewX(-6deg); animation-timing-function: cubic-bezier(.5, 0, 1, .6); }
+  70%  { opacity: 1; transform: translateX(60vw) skewX(34deg); }
+  100% { opacity: 1; transform: translateX(120vw) skewX(34deg); }
+}
+
+@media (max-width:800px) {
+  .drive {
+    left: calc(5% + 224px);
+    bottom: 8px;
+  }
+  .drive span {
+    font-size: 17px;
+    letter-spacing: -1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drive span { animation: none; }
+}
