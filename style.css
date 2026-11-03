@@ -2121,7 +2121,7 @@ nav {
   z-index: 1;
   left: calc(5% + 236px);
   right: 0;
-  bottom: 0;
+  bottom: -1px;
   pointer-events: none;
 }
 
@@ -2137,17 +2137,18 @@ nav {
   letter-spacing: -1.5px;
   line-height: 1;
   transform-origin: 0 100%;
-  animation: drive-out 9s infinite;
+  animation: drive-out 7s infinite;
 }
 
 @keyframes drive-out {
-  0%   { opacity: 0; transform: translateX(-24px); animation-timing-function: ease-out; }
-  8%   { opacity: 1; transform: none; }
-  38%  { opacity: 1; transform: none; animation-timing-function: ease-in-out; }
-  46%  { opacity: 1; transform: translateX(14px) skewX(16deg) scaleX(.96); animation-timing-function: cubic-bezier(.6, 0, .9, .5); }
-  60%  { opacity: 1; transform: translateX(22vw) skewX(24deg) scaleX(1.9); animation-timing-function: ease-in; }
-  80%  { opacity: 1; transform: translateX(60vw) skewX(30deg) scaleX(3); }
-  100% { opacity: 1; transform: translateX(120vw) skewX(30deg) scaleX(1.4); }
+  0%   { opacity: 0; transform: translateX(-60vw) skewX(24deg); }
+  10%  { opacity: 1; transform: translateX(14px) skewX(-8deg); }
+  14%  { opacity: 1; transform: translateX(-6px) skewX(3deg); }
+  18%, 28% { opacity: 1; transform: none; animation-timing-function: ease-in; }
+  58%  { opacity: 1; transform: translateX(-36px) skewX(14deg) scaleX(.85); animation-timing-function: cubic-bezier(.9, 0, 1, .3); }
+  61%  { opacity: 1; transform: translateX(8vw) skewX(-34deg) scale(2.6, 1); animation-timing-function: linear; }
+  68%  { opacity: 1; transform: translateX(calc(45vw - 100px)) skewX(-24deg) scale(.6, .45); }
+  100% { opacity: 1; transform: translateX(calc(90vw - 360px)) skewX(-6deg) scale(.1, .08); }
 }
 
 @media (max-width:800px) {
