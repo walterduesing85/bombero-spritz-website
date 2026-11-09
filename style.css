@@ -2183,7 +2183,21 @@ nav {
 
 .gif-section img {
   display: block;
-  width: min(100%, 718px);
+  width: 100%;
+  max-width: 718px;
   height: auto;
   margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+  .gif-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .gif-section h2,
+  .gif-section p {
+    margin-left: 7%;
+    margin-right: 7%;
+  }
 }
