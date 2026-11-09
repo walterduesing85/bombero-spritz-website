@@ -1997,9 +1997,9 @@ body>header .brand img {
   }
 }
 
-/* Very slow zoom-in on the hero photo */
+/* Continuous zoom on the hero photo */
 .stage-frame>img {
-  animation: hero-zoom 10s ease-out forwards;
+  animation: hero-zoom 5s ease-in-out infinite alternate;
 }
 
 @keyframes hero-zoom {
@@ -2164,4 +2164,26 @@ nav {
 
 @media (prefers-reduced-motion: reduce) {
   .drive span { animation: none; }
+}
+
+/* Comic section */
+.gif-section {
+  background: linear-gradient(to bottom, #fce3be 70%, #f2f4f4 100%);
+  text-align: left;
+}
+
+.gif-section h2 {
+  margin-bottom: 12px;
+}
+
+.gif-section p {
+  margin: 0 0 22px;
+  font-weight: 700;
+}
+
+.gif-section img {
+  display: block;
+  width: min(100%, 718px);
+  height: auto;
+  margin: 0 auto;
 }

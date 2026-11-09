@@ -18,6 +18,9 @@
         'Wir löschen jeden Durst.': 'Thirst Extinguished.',
         'Ein roter Klassiker mit einer Bar voller Charakter.': 'A red classic with a bar full of character.',
         'Bombero Spritz bringt Atmosphäre auf dein Event.': 'Bombero Spritz brings atmosphere to your event.',
+        'Deine Bar, immer da, wo du sie brauchst': 'Your bar, wherever you need it',
+        'So einfach geht’s:': 'It’s that simple:',
+        'Comic: Eine Frau in einer Galerie ruft Bombero Spritz an': 'Comic: a woman in a gallery calls Bombero Spritz',
         'Dein Event planen': 'Plan your event',
         'Hochzeit · Firmenevent · Private Feste': 'Weddings · Corporate events · Private parties',
         'Zwei Mitglieder des Bombero-Teams auf dem Dach des roten Feuerwehrwagens':
